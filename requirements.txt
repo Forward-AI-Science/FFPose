@@ -1,0 +1,13 @@
+# Core runtime — minimum required to run inference and training.
+torch>=2.0
+torchvision>=0.15
+numpy>=1.21
+opencv-python>=4.5
+pycocotools>=2.0
+
+# Optional. Uncomment if you want bit-exact parity with mmpose's RTMPose
+# augmentation pipeline (Blur / MedianBlur / CoarseDropout).
+# albumentations>=1.3
+
+# Optional. Uncomment to evaluate COCO-Wholebody-133 keypoints (AP/AR).
+# xtcocotools>=1.12
