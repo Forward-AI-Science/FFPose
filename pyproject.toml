@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ffpose"
+version = "0.1.0"
+description = "Pure-PyTorch 2.x re-implementation of the inference and training stack of OpenMMLab's mmpose. No mmengine, mmcv, mmdet, or mmpretrain dependencies."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "FFPose contributors" }]
+keywords = ["pose-estimation", "rtmpose", "vitpose", "hrnet", "pytorch", "computer-vision"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.0",
+    "torchvision>=0.15",
+    "numpy>=1.21",
+    "opencv-python>=4.5",
+    "pycocotools>=2.0",
+]
+
+[project.optional-dependencies]
+# Photometric augmentations used by the full RTMPose training recipe
+# (Blur / MedianBlur / CoarseDropout). Optional because the training loop
+# converges without them.
+albumentations = ["albumentations>=1.3"]
+# COCO-Wholebody (133-keypoint) AP evaluation needs the xtcocotools fork
+# of pycocotools.
+wholebody = ["xtcocotools>=1.12"]
+# Everything optional combined.
+all = ["albumentations>=1.3", "xtcocotools>=1.12"]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.urls]
+Homepage = "https://github.com/<your-username>/FFPose"
+Issues = "https://github.com/<your-username>/FFPose/issues"
+
+[tool.setuptools.packages.find]
+include = ["FFPose*"]
+exclude = ["tools*", "tests*", "docs*"]
